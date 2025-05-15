@@ -1,106 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NexaSQL Pricing</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>NexaSQL - Pricing</title>
   <style>
     body {
-      font-family: sans-serif;
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
       margin: 0;
       padding: 0;
-      background-color: white;
       color: #333;
     }
+
     header {
+      background-color: #003366;
+      color: white;
       padding: 1rem;
       text-align: center;
-      background-color: #f8f8f8;
-      border-bottom: 1px solid #ddd;
     }
-    .pricing {
+
+    main {
+      padding: 2rem;
       max-width: 800px;
-      margin: 2rem auto;
-      padding: 1rem;
+      margin: auto;
     }
-    .pricing h2 {
-      text-align: center;
+
+    h1 {
       color: #003366;
-    }
-    .note {
       text-align: center;
-      font-size: 0.9rem;
-      color: #777;
-      margin-bottom: 2rem;
     }
-    .plan {
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 2rem;
+    }
+
+    th, td {
       border: 1px solid #ccc;
-      border-radius: 8px;
-      margin: 1rem 0;
       padding: 1rem;
+      text-align: left;
     }
-    .plan h3 {
-      margin: 0 0 0.5rem 0;
-      color: #00509e;
+
+    th {
+      background-color: #f4f4f4;
     }
-    .plan span {
-      font-weight: normal;
-      font-size: 0.95rem;
-      color: #555;
-    }
-    .plan ul {
-      list-style-type: none;
-      padding-left: 0;
-    }
-    .plan li {
-      margin: 0.3rem 0;
-    }
-    footer {
+
+    .footer {
       text-align: center;
-      font-size: 0.8rem;
-      padding: 1rem;
+      padding: 2rem;
+      font-size: 0.9rem;
       color: #777;
     }
   </style>
 </head>
+
 <body>
   <header>
-    <h1>NexaSQL Support Plans</h1>
+    <h2>NexaSQL</h2>
   </header>
-  <section class="pricing">
-    <h2>Our Plans</h2>
-    <p class="note">* Introductory pricing for the first year only</p>
-
-    <div class="plan">
-      <h3>Startup <span>(5 hrs/month)</span></h3>
-      <ul>
-        <li><strong>Monthly:</strong> $99</li>
-        <li><strong>Quarterly:</strong> $282 (5% off)</li>
-        <li><strong>Yearly:</strong> $1069 (10% off)</li>
-      </ul>
-    </div>
-
-    <div class="plan">
-      <h3>Growth <span>(10 hrs/month)</span></h3>
-      <ul>
-        <li><strong>Monthly:</strong> $199</li>
-        <li><strong>Quarterly:</strong> $567 (5% off)</li>
-        <li><strong>Yearly:</strong> $2150 (10% off)</li>
-      </ul>
-    </div>
-
-    <div class="plan">
-      <h3>Scale <span>(20 hrs/month)</span></h3>
-      <ul>
-        <li><strong>Monthly:</strong> $399</li>
-        <li><strong>Quarterly:</strong> $1137 (5% off)</li>
-        <li><strong>Yearly:</strong> $4309 (10% off)</li>
-      </ul>
-    </div>
-  </section>
-  <footer>
-    &copy; 2025 NexaSQL. All rights reserved.
-  </footer>
+  <main>
+    <h1>Pricing</h1>
+    <p>Our plans are designed for businesses of all sizes. These are first-year introductory prices. Choose what fits best for your current database needs:</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Plan</th>
+          <th>Monthly</th>
+          <th>Quarterly (5% off)</th>
+          <th>Annual (10% off)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Startup</strong> (5 hrs)</td>
+          <td>$99</td>
+          <td>$282</td>
+          <td>$1069</td>
+        </tr>
+        <tr>
+          <td><strong>Growth</strong> (10 hrs)</td>
+          <td>$199</td>
+          <td>$567</td>
+          <td>$2149</td>
+        </tr>
+        <tr>
+          <td><strong>Scale</strong> (20 hrs)</td>
+          <td>$399</td>
+          <td>$1137</td>
+          <td>$4309</td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+  <div class="footer">&copy; 2025 NexaSQL. All rights reserved.</div>
 </body>
+
 </html>
