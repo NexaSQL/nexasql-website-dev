@@ -29,7 +29,7 @@ header {
 }
 
 .logo {
-  height: 50px;
+  height: 100px;
   vertical-align: middle;
 }
 
@@ -112,6 +112,81 @@ nav a:hover {
 .feature h3 {
   margin-bottom: 0.5rem;
   color: #004578;
+}
+
+/* Contact Us Section Styles */
+.contact-form {
+    background-color: #f8f9fb; /* A light background */
+    padding: 4rem 0;
+    text-align: center;
+}
+
+.contact-form .container h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #002244;
+}
+
+.contact-form .container p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 2rem;
+}
+
+.contact-form form {
+    width: 80%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff; /* Form background */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two columns for name and email */
+    gap: 20px;
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+    font-weight: bold;
+    text-align: left;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box; /* Prevent padding from increasing the input's width */
+    margin-bottom: 15px;
+    font-size: 1rem;
+}
+
+.contact-form textarea {
+    grid-column: 1 / 3; /* Make the message span both columns */
+    min-height: 150px;
+}
+
+.contact-form button[type="submit"] {
+    background-color: #0078d4;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    grid-column: 2 / 3; /* Align to the right in the second column */
+    justify-self: end; /* Align self to the end of the grid cell */
+}
+
+.contact-form button[type="submit"]:hover {
+    background-color: #005a9e;
 }
 
 /* Footer */
