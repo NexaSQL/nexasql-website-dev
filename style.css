@@ -188,7 +188,34 @@ nav a:hover {
 .contact-form button[type="submit"]:hover {
     background-color: #005a9e;
 }
+form {
+  max-width: 600px;
+  margin: auto;
+  padding: 1rem;
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
 
+input, textarea, button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  background-color: #003366;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #00509e;
+}
 /* Footer */
 footer {
   background-color: #f8f9fb;
