@@ -6,18 +6,14 @@ body {
   background-color: #ffffff;
   color: #333;
 }
-.save-badge {
-    background-color: #28a745; /* A nice green for emphasis */
-    color: white;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 0.8em;
-    margin-left: 5px; /* Adjust spacing if needed */
-
-}
-  .pricing-table .save-off {
-            color: green;
-            font-weight: bold;
+.discount-highlight {
+    background-color: #ffc107; /* A yellow/amber for highlighting discounts */
+    color: #212529; /* Dark text for contrast */
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-weight: bold;
+    font-size: 0.9em;
+    margin-left: 5px;
 }
 .container {
   width: 90%;
