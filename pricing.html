@@ -1,65 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pricing | NexaSQL</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pricing | NexaSQL</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        /* Basic table styling - move to your style.css for proper separation */
+        .pricing-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .pricing-table th, .pricing-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .pricing-table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        .pricing-table .save-off {
+            color: green;
+            font-weight: bold;
+        }
+
+        .pricing-table .button {
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: #007bff; /* Example button color */
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .pricing-table .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <div class="container">
-      <img src="logo.png" alt="NexaSQL Logo" class="logo" />
-      <nav>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="pricing.html" class="active">Pricing</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <section class="hero">
-    <div class="container">
-      <h1>Introductory Pricing (First Year)</h1>
-      <p>Affordable and transparent plans designed for small and medium businesses.</p>
-    </div>
-  </section>
-
-  <section class="features">
-    <div class="container">
-      <div class="grid">
-        <div class="feature">
-          <h3>Monthly Plan</h3>
-          <p><strong>$99/month</strong></p>
-          <p>Includes 5 hours of expert SQL Server support per month.</p>
-          <p>Billed monthly. Cancel anytime.</p>
+    <header>
+        <div class="container">
+            <img src="logo.png" alt="NexaSQL Logo" class="logo" />
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="pricing.html" class="active">Pricing</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
         </div>
+    </header>
 
-        <div class="feature">
-          <h3>Quarterly Plan</h3>
-          <p><strong>$282/quarter</strong></p>
-          <p>Includes 5 hours of support per month (15 hours per quarter).</p>
-          <p>Save 5% over monthly pricing.</p>
+    <section class="hero">
+        <div class="container">
+            <h1>Introductory Pricing (First Year)</h1>
+            <p>Our plans are designed for businesses of all sizes. These are first-year introductory prices. Choose what fits best for your current database needs:</p>
         </div>
+    </section>
 
-        <div class="feature">
-          <h3>Annual Plan</h3>
-          <p><strong>$1,069/year</strong></p>
-          <p>Includes 5 hours of support per month (60 hours per year).</p>
-          <p>Save 10% over monthly pricing.</p>
+    <section class="features">
+        <div class="container">
+            <table class="pricing-table">
+                <thead>
+                    <tr>
+                        <th>Plan</th>
+                        <th>Monthly</th>
+                        <th>Quarterly <span class="save-off">(5% off)</span></th>
+                        <th>Annual <span class="save-off">(10% off)</span></th>
+                        <th></th> </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Startup</strong> (5 hrs)</td>
+                        <td>$99</td>
+                        <td>$282</td>
+                        <td>$1069</td>
+                        <td><a href="#" class="button">Get Started</a></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Growth</strong> (10 hrs)</td>
+                        <td>$199</td>
+                        <td>$567</td>
+                        <td>$2149</td>
+                        <td><a href="#" class="button">Get Started</a></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Scale</strong> (20 hrs)</td>
+                        <td>$399</td>
+                        <td>$1137</td>
+                        <td>$4309</td>
+                        <td><a href="#" class="button">Get Started</a></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p style="margin-top: 20px;">All plans include expert SQL Server support. Quarterly and annual prices reflect discounts compared to monthly billing.</p>
+            <p>These are introductory prices for the first year.</p>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <footer>
-    <div class="container">
-      <p>&copy; 2025 NexaSQL. All rights reserved.</p>
-    </div>
-  </footer>
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 NexaSQL. All rights reserved.</p>
+        </div>
+    </footer>
 </body>
 </html>
