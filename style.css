@@ -13,6 +13,11 @@ body {
     border-radius: 5px;
     font-size: 0.8em;
     margin-left: 5px; /* Adjust spacing if needed */
+
+}
+  .pricing-table .save-off {
+            color: green;
+            font-weight: bold;
 }
 .container {
   width: 90%;
