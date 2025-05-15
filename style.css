@@ -7,8 +7,8 @@ body {
   color: #333;
 }
 .discount-highlight {
-    background-color: #ffc107; /* A yellow/amber for highlighting discounts */
-    color: #212529; /* Dark text for contrast */
+    background-color: #28a745; /* green for highlighting discounts */
+    color: white; /* White text for contrast against green */
     padding: 3px 8px;
     border-radius: 3px;
     font-weight: bold;
