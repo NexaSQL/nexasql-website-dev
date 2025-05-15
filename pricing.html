@@ -3,63 +3,104 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pricing | NexaSQL</title>
+  <title>NexaSQL Pricing</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: white;
+      color: #333;
+    }
+    header {
+      padding: 1rem;
+      text-align: center;
+      background-color: #f8f8f8;
+      border-bottom: 1px solid #ddd;
+    }
+    .pricing {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 1rem;
+    }
+    .pricing h2 {
+      text-align: center;
+      color: #003366;
+    }
+    .note {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #777;
+      margin-bottom: 2rem;
+    }
+    .plan {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin: 1rem 0;
+      padding: 1rem;
+    }
+    .plan h3 {
+      margin: 0 0 0.5rem 0;
+      color: #00509e;
+    }
+    .plan span {
+      font-weight: normal;
+      font-size: 0.95rem;
+      color: #555;
+    }
+    .plan ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+    .plan li {
+      margin: 0.3rem 0;
+    }
+    footer {
+      text-align: center;
+      font-size: 0.8rem;
+      padding: 1rem;
+      color: #777;
+    }
+  </style>
 </head>
 <body>
   <header>
-    <div class="container">
-      <img src="logo.png" alt="NexaSQL Logo" class="logo" />
-      <nav>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="pricing.html" class="active">Pricing</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
+    <h1>NexaSQL Support Plans</h1>
   </header>
+  <section class="pricing">
+    <h2>Our Plans</h2>
+    <p class="note">* Introductory pricing for the first year only</p>
 
-  <section class="hero">
-    <div class="container">
-      <h1>Introductory Pricing (First Year)</h1>
-      <p>Affordable and transparent plans designed for small and medium businesses.</p>
+    <div class="plan">
+      <h3>Startup <span>(5 hrs/month)</span></h3>
+      <ul>
+        <li><strong>Monthly:</strong> $99</li>
+        <li><strong>Quarterly:</strong> $282 (5% off)</li>
+        <li><strong>Yearly:</strong> $1069 (10% off)</li>
+      </ul>
+    </div>
+
+    <div class="plan">
+      <h3>Growth <span>(10 hrs/month)</span></h3>
+      <ul>
+        <li><strong>Monthly:</strong> $199</li>
+        <li><strong>Quarterly:</strong> $567 (5% off)</li>
+        <li><strong>Yearly:</strong> $2150 (10% off)</li>
+      </ul>
+    </div>
+
+    <div class="plan">
+      <h3>Scale <span>(20 hrs/month)</span></h3>
+      <ul>
+        <li><strong>Monthly:</strong> $399</li>
+        <li><strong>Quarterly:</strong> $1137 (5% off)</li>
+        <li><strong>Yearly:</strong> $4309 (10% off)</li>
+      </ul>
     </div>
   </section>
-
-  <section class="features">
-    <div class="container">
-      <div class="grid">
-        <div class="feature">
-          <h3>Monthly Plan</h3>
-          <p><strong>$99/month</strong></p>
-          <p>Includes 5 hours of expert SQL Server support per month.</p>
-          <p>Billed monthly. Cancel anytime.</p>
-        </div>
-
-        <div class="feature">
-          <h3>Quarterly Plan</h3>
-          <p><strong>$282/quarter</strong></p>
-          <p>Includes 5 hours of support per month (15 hours per quarter).</p>
-          <p>Save 5% over monthly pricing.</p>
-        </div>
-
-        <div class="feature">
-          <h3>Annual Plan</h3>
-          <p><strong>$1,069/year</strong></p>
-          <p>Includes 5 hours of support per month (60 hours per year).</p>
-          <p>Save 10% over monthly pricing.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <footer>
-    <div class="container">
-      <p>&copy; 2025 NexaSQL. All rights reserved.</p>
-    </div>
+    &copy; 2025 NexaSQL. All rights reserved.
   </footer>
 </body>
 </html>
