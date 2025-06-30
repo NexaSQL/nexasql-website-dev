@@ -1,42 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NexaSQL | SQL Server Experts</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    body {
+    * {
+      box-sizing: border-box;
       margin: 0;
+      padding: 0;
+    }
+    body {
       font-family: 'Inter', sans-serif;
-      background: #fff;
       color: #1a1a1a;
+      background-color: #fff;
+      line-height: 1.6;
     }
     header {
-      background: #0a0a23;
-      color: white;
+      background: #111827;
       padding: 20px 40px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
     header h1 {
-      font-size: 24px;
+      font-size: 28px;
     }
     nav a {
-      color: white;
+      color: #fff;
       text-decoration: none;
-      margin-left: 20px;
+      margin-left: 25px;
       font-weight: 500;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #00c7b7;
     }
     .hero {
-      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1549921296-3a6b92c6d3b9') center/cover;
+      background: linear-gradient(to right, #0f172a, #1e293b);
       color: white;
+      padding: 100px 20px;
       text-align: center;
-      padding: 120px 20px;
     }
     .hero h2 {
-      font-size: 48px;
+      font-size: 56px;
       margin-bottom: 20px;
     }
     .hero p {
@@ -44,43 +57,81 @@
       max-width: 700px;
       margin: 0 auto;
     }
+    .button {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 14px 30px;
+      background: #00c7b7;
+      color: white;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+    }
     .section {
       padding: 80px 40px;
-      max-width: 1100px;
+      max-width: 1200px;
       margin: auto;
     }
     .section h3 {
-      font-size: 32px;
-      margin-bottom: 30px;
+      font-size: 36px;
       text-align: center;
+      margin-bottom: 50px;
     }
-    .services-grid {
+    .services {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 40px;
     }
     .card {
-      padding: 20px;
-      background: #f8f8f8;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      background: #f3f4f6;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      transition: transform 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .card h4 {
+      margin-bottom: 15px;
+      font-size: 22px;
+    }
+    .card p {
+      font-size: 16px;
+    }
+    .contact-form {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      padding: 14px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    .contact-form button {
+      padding: 14px;
+      font-size: 16px;
+      background: #00c7b7;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
     }
     footer {
-      background: #0a0a23;
+      background: #111827;
       color: white;
       text-align: center;
       padding: 30px 20px;
       font-size: 14px;
     }
-    a.button {
-      background: #00c7b7;
-      color: white;
-      padding: 15px 25px;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: 600;
-      display: inline-block;
-      margin-top: 30px;
+    @media(max-width: 768px) {
+      .hero h2 { font-size: 36px; }
+      .section h3 { font-size: 28px; }
     }
   </style>
 </head>
@@ -96,47 +147,48 @@
   </header>
 
   <section class="hero">
-    <h2>SQL Server Expertise You Can Trust</h2>
-    <p>Run faster. Stay online. Sleep better. NexaSQL helps businesses manage and optimize critical SQL environments — led by ex-Microsoft DBAs.</p>
-    <a href="#contact" class="button">Schedule a Call</a>
+    <h2>SQL Server Support & Expertise</h2>
+    <p>Reliable, scalable database solutions for growing businesses. Powered by ex-Microsoft DBAs.</p>
+    <a href="#contact" class="button">Get Started</a>
   </section>
 
   <section class="section" id="services">
-    <h3>Our Services</h3>
-    <div class="services-grid">
+    <h3>What We Offer</h3>
+    <div class="services">
       <div class="card">
-        <h4>Performance Tuning</h4>
-        <p>Fix slow queries, analyze execution plans, and maximize speed.</p>
+        <h4><i class="fas fa-gauge-high"></i> Performance Optimization</h4>
+        <p>We fix slow queries, optimize indexes and improve your database performance.</p>
       </div>
       <div class="card">
-        <h4>Monitoring & Alerts</h4>
-        <p>24x7 proactive monitoring and database health alerts.</p>
+        <h4><i class="fas fa-shield-alt"></i> High Availability</h4>
+        <p>Setup and maintain SQL Server AlwaysOn, clustering and DR plans.</p>
       </div>
       <div class="card">
-        <h4>Cloud Migration</h4>
-        <p>Move from on-prem to Azure or AWS with zero downtime.</p>
+        <h4><i class="fas fa-cloud-upload-alt"></i> Cloud Migration</h4>
+        <p>Migrate your SQL Server to Azure/AWS with zero data loss.</p>
       </div>
       <div class="card">
-        <h4>Disaster Recovery</h4>
-        <p>HA/DR setup with backups, log shipping, and failover clusters.</p>
+        <h4><i class="fas fa-eye"></i> Monitoring & Alerts</h4>
+        <p>Get 24/7 monitoring and proactive alerts for database health.</p>
       </div>
     </div>
   </section>
 
   <section class="section" id="about">
     <h3>About NexaSQL</h3>
-    <p style="text-align:center; max-width:800px; margin:auto;">NexaSQL is a brand of NXQL Technologies Pvt Ltd. We are a team of seasoned SQL Server consultants, including ex-Microsoft engineers, helping small and medium-sized businesses scale with confidence. We combine deep database knowledge with practical industry experience.</p>
+    <p style="max-width: 800px; margin: auto; text-align: center;">NexaSQL is a brand of NXQL Technologies Pvt Ltd. We're a team of former Microsoft engineers delivering expert SQL Server consulting, health checks, and managed database services tailored for small and medium-sized enterprises.</p>
   </section>
 
   <section class="section" id="contact">
     <h3>Contact Us</h3>
-    <p style="text-align:center;">Email us at <a href="mailto:hello@nexasql.com">hello@nexasql.com</a> or fill the form below:</p>
-    <form action="https://formspree.io/f/your-form-id" method="POST" style="max-width:500px; margin:auto;">
-      <input type="text" name="name" placeholder="Your Name" required style="width:100%; padding:10px; margin:10px 0;">
-      <input type="email" name="email" placeholder="Your Email" required style="width:100%; padding:10px; margin:10px 0;">
-      <textarea name="message" placeholder="Your Message" required style="width:100%; padding:10px; margin:10px 0;"></textarea>
-      <button type="submit" style="padding:10px 20px; background:#00c7b7; border:none; color:white; font-weight:bold;">Send</button>
-    </form>
+    <div class="contact-form">
+      <form action="https://formspree.io/f/your-form-id" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
   </section>
 
   <footer>
