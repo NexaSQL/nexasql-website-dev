@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="post:title" content="Resumable Maintenance in SQL Server: Index Rebuilds, Index Creation, and ALTER TABLE ADD CONSTRAINT">
+    <meta name="post:slug" content="resumable-maintenance-in-sql-server-index-rebuilds-index-creation-and-alter-table-add-constraint">
+    <meta name="post:excerpt" content="Resumable schema maintenance in SQL Server transforms long-running, risky operations into flexible, interruption-tolerant processes.">
+    <meta name="post:author" content="NexaSQL Team">
+    <meta name="post:date" content="2025-06-17">
+    <meta name="post:readTime" content="10 min read">
+    <meta name="post:category" content="Performance">
+    <meta name="post:tags" content="#Index,#IndexStrategy,#IndexResumableMaintenance">
+    <meta name="post:featured" content="true">
+    <title>Resumable Maintenance in SQL Server: Index Rebuilds, Index Creation, and ALTER TABLE ADD CONSTRAINT - NexaSQL Blog</title>
+    <meta name="description" content="Resumable schema maintenance in SQL Server transforms long-running, risky operations into flexible, interruption-tolerant processes.">
+</head>
+<body>
+<h2>Introduction:</h2><p><span style="background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);">Large tables make routine maintenance risky. Traditional online index builds and&nbsp;</span><code style="background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);">ALTER&nbsp;TABLE&nbsp;ADD&nbsp;CONSTRAINT</code><span style="background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);">&nbsp;operations run as a single long‑lived transaction. If an outage or fail‑over occurs near the end, SQL&nbsp;Server rolls back everything, wasting time, expanding the transaction log, and extending maintenance windows. Beginning with SQL&nbsp;Server&nbsp;2017, Microsoft introduced resumable maintenance so work can pause safely and continue later without losing progress. This post focuses on resumable online index creation and rebuild (2017–2022) and resumable online ADD&nbsp;CONSTRAINT(2022).</span></p><h2>1 · Why Resumability Matters</h2><ul><li><strong>Smaller log footprint</strong> — Each ~100,000-row batch commits independently, allowing log truncation.</li><li><strong>Resilient to interruption</strong> — Paused or failed operations preserve progress; resume continues from the last batch.</li><li><strong>Controlled windows</strong> — <code>MAX_DURATION</code> automatically pauses work after the specified time.</li><li><strong>Reduced blocking</strong> — Only a brief schema-modification lock (<code>SCH-M</code>) is required at final switch-over.</li></ul><h2>2 · Resumable Online Index Rebuilds</h2><ul><li><strong>Version support</strong> — SQL Server <strong>2017+</strong> (rowstore); SQL Server <strong>2022</strong> adds <strong>nonclustered columnstore</strong>.</li><li><strong>Edition requirement</strong> — Enterprise Edition (on-premises); supported in <strong>Azure SQL Database/MI</strong>.</li></ul><h3>2.1 Internal Flow</h3><ol><li>Parse statement with <code>ONLINE = ON, RESUMABLE = ON</code>.</li><li>Engine processes ~100,000 rows per batch and commits.</li><li>Repeat until complete, paused, failed, or timed out.</li><li>On <code>RESUME</code>, engine restarts at the next batch.</li><li>Final stage acquires a short <code>SCH-M</code> lock to swap in the new index.</li></ol><h3>2.2 DDL &amp; Control</h3><pre class="ql-syntax" spellcheck="false">
+ALTER INDEX IX_OrderDate ON dbo.SalesFact
+    REBUILD WITH (
+        ONLINE       = ON,
+        RESUMABLE    = ON,
+        MAX_DURATION = 90,
+        MAXDOP       = 4
+    );
+
+-- Pause after current batch
+ALTER INDEX IX_OrderDate ON dbo.SalesFact PAUSE;
+
+-- Resume with different options
+ALTER INDEX IX_OrderDate ON dbo.SalesFact
+    RESUME WITH (MAXDOP = 2, MAX_DURATION = 60);
+
+-- Abort and roll back all progress
+ALTER INDEX IX_OrderDate ON dbo.SalesFact ABORT;
+</pre><h3>2.3 Monitoring</h3><pre class="ql-syntax" spellcheck="false">
+SELECT name,
+       state_desc,           -- RUNNING | PAUSED | ABORTED
+       percent_complete,
+       total_elapsed_time/1000 AS seconds
+FROM sys.index_resumable_operations;
+</pre><h2>3 · Resumable Online Index Creation</h2><ul><li><strong>Version support</strong> — SQL Server <strong>2019+</strong> (rowstore); SQL Server <strong>2022</strong> adds <strong>nonclustered columnstore</strong>.</li><li><strong>Edition requirement</strong> — Enterprise Edition (on-premises); supported in <strong>Azure SQL Database/MI</strong>.</li></ul><pre class="ql-syntax" spellcheck="false">
+CREATE INDEX IX_CustomerDate
+    ON dbo.SalesFact(OrderDate)
+    INCLUDE (CustomerName, Amount)
+    WITH (
+        ONLINE       = ON,
+        RESUMABLE    = ON,
+        MAX_DURATION = 60
+    );
+</pre><p>Pause/resume/abort/monitoring use the same commands and DMV as rebuilds.</p><h2>4 · Resumable ALTER TABLE ADD CONSTRAINT (PK, UNIQUE)</h2><ul><li><strong>Version support</strong> — SQL Server <strong>2022</strong> only.</li><li><strong>Edition requirement</strong> — Enterprise Edition (on-premises).</li></ul><h3>4.1 Syntax</h3><pre class="ql-syntax" spellcheck="false">
+ALTER TABLE dbo.SalesFact
+    ADD CONSTRAINT PK_SalesFact_Id PRIMARY KEY CLUSTERED (Id)
+    WITH (
+        ONLINE       = ON,
+        RESUMABLE    = ON,
+        MAX_DURATION = 120
+    );
+</pre><h3>4.2 Control</h3><pre class="ql-syntax" spellcheck="false">
+ALTER INDEX ALL ON dbo.SalesFact PAUSE;
+ALTER INDEX ALL ON dbo.SalesFact
+    RESUME WITH (MAX_DURATION = 60);
+ALTER INDEX ALL ON dbo.SalesFact ABORT;
+</pre><h3>4.3 Monitoring</h3><pre class="ql-syntax" spellcheck="false">
+SELECT name,
+       operation_type_desc,    -- ADD_CONSTRAINT
+       state_desc,
+       percent_complete
+FROM sys.index_resumable_operations
+WHERE operation_type_desc = 'ADD_CONSTRAINT';
+</pre><h2>5 · Database-Scoped Enforcement</h2><pre class="ql-syntax" spellcheck="false">
+ALTER DATABASE SCOPED CONFIGURATION
+    SET ELEVATE_RESUMABLE = WHEN_SUPPORTED;   -- or FAIL_UNSUPPORTED
+</pre><ul><li><code>WHEN_SUPPORTED</code> → silently applies <code>RESUMABLE = ON</code> when available.</li><li><code>FAIL_UNSUPPORTED</code> → errors out on non-resumable DDL.</li></ul><h2>6 · Best-Practice Checklist</h2><ul><li>Always set <code>MAX_DURATION</code> to define safe maintenance windows.</li><li>Monitor DMVs and alert on unexpected <code>PAUSED</code> states.</li><li>Adjust <code>MAXDOP</code> when resuming to control CPU load.</li><li>Ensure sufficient <code>tempdb</code> and log space for batching.</li><li>Use <code>ABORT</code> only when discarding progress is acceptable.</li><li>Enable <code>ELEVATE_RESUMABLE</code> for consistent resumability in scripted maintenance.</li></ul><h2>Conclusion</h2><p>Resumable online index rebuilds (2017+), resumable index creation (2019+), and resumable <code>ADD CONSTRAINT</code> (2022) transform schema maintenance from all-or-nothing into interruption-tolerant processes. By batching work, persisting metadata, and exposing pause/resume controls, SQL Server minimizes log growth, shortens outage windows, and allows recovery after interruptions. With proper monitoring and database-scoped enforcement, you can achieve reliable, low-impact maintenance even on very large production systems.</p><p><strong>Need expert help identifying performance bottlenecks in your database?</strong>&nbsp;<a href="https://nexasql.com/Contact.html#form03-e" target="_blank" style="color: rgb(33, 128, 141);">Contact NexaSQL today</a>&nbsp;for a comprehensive performance audit and optimization plan.</p>
+</body>
+</html>

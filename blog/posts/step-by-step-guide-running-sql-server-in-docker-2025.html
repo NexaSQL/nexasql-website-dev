@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="post:title" content="Step-by-Step Guide: Running SQL Server in Docker (2025)">
+    <meta name="post:slug" content="step-by-step-guide-running-sql-server-in-docker-2025">
+    <meta name="post:excerpt" content="Run SQL Server quickly in Docker with official images, persistent storage, and easy management—perfect for development and testing environments.">
+    <meta name="post:author" content="NexaSQL Team">
+    <meta name="post:date" content="2025-08-07">
+    <meta name="post:readTime" content="22 mins read">
+    <meta name="post:category" content="Database Administration">
+    <meta name="post:tags" content="#SQLServer #Docker #Database #DevOps #Containerization #DataPersistence #SQL Server2025">
+    <meta name="post:featured" content="true">
+    <title>Step-by-Step Guide: Running SQL Server in Docker (2025) - NexaSQL Blog</title>
+    <meta name="description" content="Run SQL Server quickly in Docker with official images, persistent storage, and easy management—perfect for development and testing environments.">
+</head>
+<body>
+<p><span style="background-color: oklch(0.9902 0.004 106.47); color: oklch(0.3039 0.04 213.68);">Deploying SQL Server in a Docker container is a fast, portable way to get a reliable database environment for development or testing. Here’s a simple workflow to run SQL Server in Docker on your system.</span></p><h2>1.&nbsp;<span style="color: inherit;">Install Docker</span></h2><ul><li>Download and install Docker Desktop from the official Docker website.</li><li>Make sure Docker is running.</li><li>Recommended: Allocate at least 4GB (preferably 12GB) of memory to Docker for smoother SQL Server performance.</li></ul><h2>2.&nbsp;<span style="color: inherit;">Pull the Official SQL Server Image</span></h2><p>Open your terminal/command prompt and run:</p><pre class="ql-syntax" spellcheck="false">bash
+docker pull mcr.microsoft.com/mssql/server:2025-latest
+</pre><p><em>(Replace&nbsp;</em><code><em>2025-latest</em></code><em>&nbsp;with the actual tag for your desired SQL Server version.)</em></p><h2>3.&nbsp;<span style="color: inherit;">Run the SQL Server Container</span></h2><p>Start a new container with required environment variables:</p><pre class="ql-syntax" spellcheck="false">bash
+docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=YourStr0ngP@ssw0rd" \
+-p 1433:1433 --name sql2025 -d mcr.microsoft.com/mssql/server:2025-latest
+</pre><ul><li><code>ACCEPT_EULA=Y</code>: Accepts the license.</li><li><code>SA_PASSWORD</code>: Sets the system administrator (SA) password.</li><li><code>-p 1433:1433</code>: Maps container port 1433 (SQL default) to host port 1433.</li><li><code>--name sql2025</code>: Names your container.</li></ul><h2>4.&nbsp;<span style="color: inherit;">Check Container Status</span></h2><pre class="ql-syntax" spellcheck="false">bash
+docker ps
+</pre><p>This lists all running containers. Confirm your container is active.</p><h2>5.&nbsp;<span style="color: inherit;">Connect to SQL Server Instance</span></h2><ul><li>Use SQL Server Management Studio (SSMS), Azure Data Studio, or&nbsp;<code>sqlcmd</code>&nbsp;to connect.</li><li>Server:&nbsp;<code>localhost</code>, Port:&nbsp;<code>1433</code>, User:&nbsp;<code>sa</code>, Password: the one you set above.</li></ul><p>Sample&nbsp;<code>sqlcmd</code>&nbsp;connection (from terminal):</p><pre class="ql-syntax" spellcheck="false">bash
+sqlcmd -S localhost -U sa -P YourStr0ngP@ssw0rd
+</pre><h2>6.&nbsp;<span style="color: inherit;">Persist Your Data (Recommended for Production/Dev)</span></h2><p>Use host directory or named volumes so your databases survive container shutdowns.</p><p>Example:</p><pre class="ql-syntax" spellcheck="false">bash
+docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=YourStr0ngP@ssw0rd" \
+-p 1433:1433 --name sql2025 \
+-v /path/on/host/sql_data:/var/opt/mssql \
+-d mcr.microsoft.com/mssql/server:2025-latest
+</pre><p>This maps&nbsp;<code>/path/on/host/sql_data</code>&nbsp;to SQL Server’s data directory in the container.</p><h2>7.&nbsp;<span style="color: inherit;">Optional: Attach Existing Databases</span></h2><p>Copy your&nbsp;<code>.mdf</code>&nbsp;(data) and&nbsp;<code>.ldf</code>&nbsp;(log) files into the mapped data directory. Attach them in SSMS or via T-SQL in a connected session.</p><h2>8.&nbsp;<span style="color: inherit;">Stopping and Removing the Container</span></h2><p>To stop:</p><pre class="ql-syntax" spellcheck="false">bash
+docker stop sql2025
+</pre><p>To remove:</p><pre class="ql-syntax" spellcheck="false">bash
+docker rm sql2025
+</pre><p><em>Data is saved, if you use mapped volumes as above.</em></p><h2>9.&nbsp;<span style="color: inherit;">Upgrade SQL Server in Container</span></h2><ul><li>Pull the new image tag:</li><li><code>docker pull mcr.microsoft.com/mssql/server:&lt;new_tag&gt;</code></li><li>Stop your container, then run a new one using the updated image and same volume for data persistence.</li></ul><p>Now you have a working SQL Server instance in Docker—ideal for agile development, easy testing, and rapid prototyping!</p><p><strong>Need expert help identifying performance bottlenecks in your database?</strong>&nbsp;<a href="https://nexasql.com/Contact.html#form03-e" target="_blank" style="color: rgb(33, 128, 141);">Contact NexaSQL today</a>&nbsp;for a comprehensive performance audit and optimization plan.</p>
+</body>
+</html>

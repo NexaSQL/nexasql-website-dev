@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://nexasql.com/blog/post.html?slug=sql-performance-mistakes-that-kill-database-speed</loc>
+  </url>
+  <url>
+    <loc>https://nexasql.com/blog/post.html?slug=parameter-sniffing-in-sql-server-a-white-paper</loc>
+  </url>
+  <url>
+    <loc>https://nexasql.com/blog/post.html?slug=accelerated-database-recovery-in-sql-server</loc>
+  </url>
+  <url>
+    <loc>https://nexasql.com/blog/post.html?slug=whats-new-in-sql-server-2025-key-features-and-innovations</loc>
+  </url>
+  <url>
+    <loc>https://nexasql.com/blog/post.html?slug=comprehensive-guide-to-sql-server-backups-features-and-best-practices-2025</loc>
+  </url>
+  <url>
+    <loc>https://nexasql.com/blog/post.html?slug=troubleshooting-network-related-or-instance-specific-sql-server-connection-errors</loc>
+  </url>
+  <url>
+    <loc>https://nexasql.com/blog/post.html?slug=step-by-step-guide-enabling-transparent-data-encryption-tde-in-sql-server</loc>
+  </url>
+  <url>
+    <loc>https://nexasql.com/blog/post.html?slug=step-by-step-guide-running-sql-server-in-docker-2025</loc>
+  </url>
+  <url>
+    <loc>https://nexasql.com/blog/post.html?slug=resumable-maintenance-in-sql-server-index-rebuilds-index-creation-and-alter-table-add-constraint</loc>
+  </url>
+  <url>
+    <loc>https://nexasql.com/blog/post.html?slug=understanding-read-commit-snapshot-isolation-enhancing-database-concurrency-with-row-versioning</loc>
+  </url>
+</urlset>
